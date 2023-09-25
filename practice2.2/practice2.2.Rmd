@@ -30,13 +30,26 @@ plot(pressure)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
 
+
+
 install.packages("dplyr")
 library(dplyr)
 install.packages("tidyr")
-library(dplyr)
-withrow<-read.table("C:/Lei/R_class/bo-lei/practice2.2/dipintothereef.com_uploads_3_7_3_5_37359245_rairuoho.txt")
+library(tidyr)
+url <- "https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt"
+withrow<-read.table(url,header=TRUE)
+
 withoutrow<-withrow[,-c(12,13)]#remove row,column
 
 
-treatment<-ifelse(withoutrow$V9=='nutrient','enriched','water')
- withoutrow$V9<-ifelse(withoutrow$V9=='nutrient','enriched','water')
+treatment<-ifelse(withoutrow$treatment=='nutrient','enriched','water')
+withoutrow$treatment<-ifelse(withoutrow$treatment=='nutrient','enriched','water')
+
+withoutrow<-withoutrow[,-c(4,5)]
+withoutrow<-withoutrow%>% pivot_longer(cols = starts_with('day'),names_to = 'day',values_to = 'length')
+
+withoutrow<-withoutrow%>%mutate(upper_left=paste(withoutrow$spatial1,withoutrow$spatial2,sep = '_'))
+
+
+
+

@@ -383,10 +383,16 @@ chunk like this:</p>
 code chunk to prevent printing of the R code that generated the
 plot.</p>
 <p>install.packages(“dplyr”) library(dplyr) install.packages(“tidyr”)
-library(dplyr)
-withrow&lt;-read.table(“C:/Lei/R_class/bo-lei/practice2.2/dipintothereef.com_uploads_3_7_3_5_37359245_rairuoho.txt”)
-withoutrow&lt;-withrow[,-c(12,13)]#remove row,column</p>
-<p>treatment&lt;-ifelse(withoutrow<span class="math inline">\(V9==&#39;nutrient&#39;,&#39;enriched&#39;,&#39;water&#39;)  withoutrow\)</span>V9&lt;-ifelse(withoutrow$V9==‘nutrient’,‘enriched’,‘water’)</p>
+library(tidyr) url &lt;- “<a href="https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt" class="uri">https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt</a>”
+withrow&lt;-read.table(url,header=TRUE)</p>
+<p>withoutrow&lt;-withrow[,-c(12,13)]#remove row,column</p>
+<p>treatment&lt;-ifelse(withoutrow<span class="math inline">\(treatment==&#39;nutrient&#39;,&#39;enriched&#39;,&#39;water&#39;)
+withoutrow\)</span>treatment&lt;-ifelse(withoutrow$treatment==‘nutrient’,‘enriched’,‘water’)</p>
+<p>withoutrow&lt;-withoutrow[,-c(4,5)] withoutrow&lt;-withoutrow%&gt;%
+pivot_longer(cols = starts_with(‘day’),names_to = ‘day’,values_to =
+‘length’)</p>
+<p>withoutrow&lt;-withoutrow%&gt;%mutate(upper_left=paste(withoutrow<span class="math inline">\(spatial1,withoutrow\)</span>spatial2,sep =
+’_’))</p>
 </div>
 
 
