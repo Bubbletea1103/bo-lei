@@ -5,38 +5,14 @@ date: "2023-09-24"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
 
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
-
-
+```{r , echo=FALSE}
 
 install.packages("dplyr")
 library(dplyr)
 install.packages("tidyr")
 library(tidyr)
-url <- "https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt"
+url <- "https://www.dipintothereef.com/uploads/3/7/3/5/37359245/rairuoho.txt" 
 withrow<-read.table(url,header=TRUE)
 
 withoutrow<-withrow[,-c(12,13)]#remove row,column
@@ -46,10 +22,12 @@ treatment<-ifelse(withoutrow$treatment=='nutrient','enriched','water')
 withoutrow$treatment<-ifelse(withoutrow$treatment=='nutrient','enriched','water')
 
 withoutrow<-withoutrow[,-c(4,5)]
-withoutrow<-withoutrow%>% pivot_longer(cols = starts_with('day'),names_to = 'day',values_to = 'length')
+withoutrow<-withoutrow%>% pivot_longer(cols = starts_with('day'),names_to = 'day',values_to = 'length') # interesting, using "starts_with"
 
 withoutrow<-withoutrow%>%mutate(upper_left=paste(withoutrow$spatial1,withoutrow$spatial2,sep = '_'))
 
+```
 
+# good
 
 
