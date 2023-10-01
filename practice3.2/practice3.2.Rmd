@@ -1,0 +1,39 @@
+---
+title: "practice3.2"
+author: "bo-lei"
+date: "2023-10-01"
+output: html_document
+---
+
+rowbubble <- data.frame(
+  subject = 1:5,
+  before_diet = c(104, 95, 87, 77, 112),
+  after_diet = c(96, 91, 81, 75, 118)
+   )
+
+library(tidyr)
+library(dplyr)
+
+rebubble <- rowbubble %>%
+  pivot_longer(
+  cols = c(before_diet, after_diet),
+  names_to = "measurement_time",
+  values_to = "weight"
+    )
+
+rebubble%>%mutate(measurement_time = as.factor(measurement_time)) 
+
+rebubble<- rebubble%>%
+  group_by(subject) %>%
+   mutate(weight_loss = ((weight - first(weight)) / first(weight)) * 100)
+
+
+BUBBLE_DIET <- list(
+    rebubble,  
+    WEIGHT_LOSS = list(
+    subject = rownames(rebubble),                
+    weight_loss = rebubble$weight_loss,       
+    subject_weight_loss = data.frame(
+    subject = rebubble$subject,             
+    weight_loss = rebubble$weight_loss     
+      ) ) )
