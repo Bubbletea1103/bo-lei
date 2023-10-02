@@ -5,6 +5,11 @@ date: "2023-10-01"
 output: html_document
 ---
 
+DO NOT FORGET TO SET UP OPTION OF YOUR CODE CHUNK BEFORE KNITTING YOUR .RMD INTO .HTML.
+
+
+```{r TO_NOT_FORGET, warning=F, message=F}
+
 rowbubble <- data.frame(
   subject = 1:5,
   before_diet = c(104, 95, 87, 77, 112),
@@ -37,3 +42,7 @@ BUBBLE_DIET <- list(
     subject = rebubble$subject,             
     weight_loss = rebubble$weight_loss     
       ) ) )
+
+BUBBLE_DIET
+
+```{r TO_NOT_FORGET}
