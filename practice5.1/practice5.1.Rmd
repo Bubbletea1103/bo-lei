@@ -1,0 +1,53 @@
+---
+title: "practice5.1"
+author: "bo-lei"
+date: "2023-10-23"
+output: html_document
+---
+
+
+library(maptools)
+library(rgdal)
+library (sp)
+library(raster)
+library(ggplot2)
+library(sf)
+library(rnaturalearth)
+library(rnaturalearthdata)
+library(ggspatial)
+library(rgbif)
+library(mapr)
+library (GISTools) 
+library(marmap)
+library(leaflet)
+
+  taiwan <- st_read("C:/Users/User/Downloads/mapdata202301070205/COUNTY_MOI_1090820.shp")
+
+library(leaflet)
+
+taiwan <- st_read("C:/Users/User/Downloads/mapdata202301070205/COUNTY_MOI_1090820.shp")
+
+lantan <- paste(sep = "<br/>",
+  "<b><a href='https://www.chiayi.gov.tw/News_Content.aspx?n=512&s=216150'>Lantan</a></b>",
+  "Lantan Lake",
+  "A beautiful attraction in Chia-Yi City")
+
+ncyu <- paste(sep = "<br/>",
+  "<b><a href='https://www.ncyu.edu.tw/'>NCYU</a></b>",
+  "Nation Chia-Yi University",
+  "My alma mater")
+
+kakalove <- paste(sep = "<br/>",
+  "<b><a href='https://www.kakalovecafe.com.tw/'>KAKALOVE</a></b>",
+  "My favorite cafe")
+
+baronscone <- paste(sep = "<br/>",
+  "<b><a href='https://www.kakalovecafe.com.tw/'>Baron scones</a></b>",
+  "Best scones in Chia-Yi City")
+
+leaflet() %>%
+  addTiles() %>%
+  addMarkers(lng = 120.479417, lat = 23.472944, popup = lantan) %>%
+  addMarkers(lng = 120.487152, lat = 23.46881, popup = ncyu) %>%
+  addMarkers(lng = 120.433332, lat = 23.47434, popup = kakalove) %>%
+  addMarkers(lng = 120.45131, lat = 23.479879, popup = baronscone)
