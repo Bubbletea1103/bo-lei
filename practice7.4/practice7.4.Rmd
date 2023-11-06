@@ -1,0 +1,40 @@
+---
+title: "practice7.4"
+author: "bo-lei"
+date: "2023-11-06"
+output: html_document
+---
+
+data('rairuoho')
+
+my.ttest <- function(x, y) {
+  mean_x <- mean(x)
+  mean_y <- mean(y)
+  
+  sd_x <- sd(x)
+  sd_y <- sd(y)
+  
+  n_x <- length(x)
+  n_y <- length(y)
+  
+  se <- sqrt((sd_x^2 / n_x) + (sd_y^2 / n_y))
+  
+  t_stat <- (mean_x - mean_y) / se
+  
+  df <- n_x + n_y - 2
+  
+  p_value <- 2 * pt(abs(t_stat), df, lower.tail = FALSE)
+  
+  result <- list(
+    statistic = t_stat,
+    parameter = df,
+    p.value = p_value
+  )
+  return(result)
+}
+
+day1_data <- rairuoho$length[rairuoho$day == 1]
+day2_data <- rairuoho$length[rairuoho$day == 2]
+
+result <- my.ttest(day1_data, day2_data)
+print(result)
